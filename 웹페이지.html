@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>HTML5 기본 프로젝트</title>
+    <style>
+        *{
+            margin: 0; padding: 0;
+            font-family: '맑은 고딕', 'Malgun Gothic', Gothic, sans-serif;
+        }
+        a { text-decoration: none;}
+        li { list-style: none;}
+
+        body { width: 960px; margin: 0 auto; background: #E6E6E6;}
+
+        #page-upper-wrapper {
+            background-color: white;
+            width: 960px; height: 210px;
+            border-radius: 5px;
+            
+            position: fixed;
+        }
+
+        #page-left-wrapper {
+            background-color: white;
+            padding: 30px;
+            margin-top: -20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 6px rgba(100, 100, 100, 0.3);
+            overflow: hidden; 
+        }
+
+        #page-right-wrapper {
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 6px rgba(100, 100, 100, 0.3); 
+            position: fixed;
+        }
+
+        #main-header { padding: 40px 50px; position: fixed;  width: 100%;  }
+        .master-title {
+            font-size: 30px;
+            color: #181818;
+        }
+        .master-description {
+            font-size: 15px; font-weight: 500;
+            color: #383838;
+        }
+
+        #main-navigation{
+            border-top: 1px solid #C8C8C8;
+            border-bottom: 1px solid #C8C8C8;
+            margin-bottom: 20px;
+            margin-left: 20px;
+            height: 40px;
+            position: fixed; top:140px;
+        }
+
+        .pull-left { float: left;}
+        .pull-right { float: right; padding-left: 450px;}
+        .outer-menu-item { float: left; position: relative;}
+        .outer-menu-item:hover {
+            background: black;
+            color: white;
+        }
+        .menu-title {
+            display: block;
+            height: 30px; line-height: 30px;
+            text-align: center;
+            padding: 5px 20px;
+        }
+        .inner-menu {
+            display: none;
+            position: absolute;
+            top: 40px; left: 0;
+            width: 100%;
+
+            background: white;
+            box-shadow: 0 2px 6px rgba(5,5,5,0.9);
+            z-index: 1000;
+            
+            text-align: center;
+
+        }
+        .inner-menu-item> a {
+            display: block;
+            padding: 5px 10px;
+            color: black;
+        }
+        .inner-menu-item> a:hover {
+            background: black;
+            color: white;
+        }
+        .search-bar {
+            height: 26px; padding: 7px;
+        }
+        .input-search {
+            display: block; float: left;
+
+            background-color: #FFFFFF;
+            border: 1px solid #CCCCCC; border-radius: 15px 0 0 15px;
+            box-shadow: inset 0 1px 1px rgba(0,0,0,0.05);
+            
+            width: 100px; height: 24px;
+            padding: 0 0 0 10px; font-size: 12px; color: #555555;
+        }
+        .input-search:focus {
+            border-color: rgba(82,168, 236, 0.8); outline: 0;
+            box-shadow: inset 0 1px 1px rgba(0,0,0,0.05);
+        }
+        .input-search-submit {
+            display: block;  float: left;  width: 50px;  height: 26px;
+            border-radius: 0 15px 15px 0; border: 1px solid #CCCCCC;
+
+            margin-left: -1px;
+        }
+
+        #content {overflow: hidden;}
+        #main-section {
+            float: left;
+            width: 710px;
+        }
+
+        #main-aside {
+            float: right;
+            width: 100px;
+            top: 100px;
+            margin-left: -10px;
+        }
+        article {
+            padding: 0 10px 20px 10px;
+            border-bottom: 1px solid #C8C8C8;
+            padding-top: 170px;
+        }
+
+        .article-header { padding: 20px 0;}
+        .article-title { 
+            font-size: 25px;
+            font-weight: 500;
+            padding-bottom: 10px;
+        }
+        .article-date { font-size: 13px;}
+        .article-body {
+            font-size: 14px;
+        }
+        .aside-list { padding: 10px 0 30px 0;}
+        .aside-list >h3 {
+            font-size: 15px;
+            font-weight: 600;
+        }
+
+        .aside-list li a {
+            margin-left: 8px;
+            font-size: 13px;
+            color: #6C6C6C;
+        }
+        #main-footer {
+            background: white;
+            border-radius: 0 5px;
+            margin-top: -20px;
+            text-align: center;
+        }
+    </style>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('.outer-menu-item').hover(function() {
+                $(this).find('.inner-menu').show();
+            }, function() {
+                $(this).find('.inner-menu').hide();
+            });
+        });
+    </script>
+</head>
+<body>
+    <div id="page-upper-wrapper">
+        <header id="main-header">
+            <hgroup>
+                <h1 class="master-title">어서오슈 cafe</h1>
+                <h2 class="master-description">경기 성남시 수정구 탄리로 22 1층</h2>
+            </hgroup>
+        </header>
+        <nav id="main-navigation">
+            <div class="pull-left">
+                <ul class="outer-menu">
+                    <li class="outer-menu-item">
+                        <span class="menu-title">음료</span>
+                        <ul class="inner-menu">
+                            <li class="inner-menu-item"><a href="#article1">Coffee</a></li>
+                            <li class="inner-menu-item"><a href="#article2">Non coffee</a></li>
+                            <li class="inner-menu-item"><a href="#article3">Smoothie</a></li>
+                            <li class="inner-menu-item"><a href="#article4">Ade</a></li>
+                        </ul>
+                    </li>
+                    <li class="outer-menu-item">
+                        <span class="menu-title">슈</span>
+                        <ul class="inner-menu">
+                            <li class="inner-menu-item"><a href="#article5">비스켓슈</a></li>
+                            <li class="inner-menu-item"><a href="#article6">어서오슈(바닐라)</a></li>
+                            <li class="inner-menu-item"><a href="#article7">어서오슈(초코)</a></li>
+                        </ul>
+                    </li>
+                    <li class="outer-menu-item">
+                        <span class="menu-title">쿠키</span>
+                        <ul class="inner-menu">
+                            <li class="inner-menu-item"><a href="#article8">초코초코</a></li>
+                            <li class="inner-menu-item"><a href="#article9">쑥떡쑥떡</a></li>
+                            <li class="inner-menu-item"><a href="#article10">누텔라</a></li>
+                        </ul>
+                    </li>
+                    <li class="outer-menu-item">
+                        <span class="menu-title">타르트</span>
+                        <ul class="inner-menu">
+                            <li class="inner-menu-item"><a href="#article11">청포도</a></li>
+                            <li class="inner-menu-item"><a href="#article12">딸기</a></li>
+                            <li class="inner-menu-item"><a href="#article13">블루베리</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        
+            <div class="pull-right">
+                <div class="search-bar">
+                    <form>
+                        <input type="text" class="input-search" />
+                        <input type="submit" class="input-search-submit" value="검색" />
+                    </form>
+                </div>
+            </div>
+        </nav>
+    </div>
+    <div id="page-left-wrapper">   
+        <div id="content">
+            <section id="main-section">
+                <article id="article1">
+                    <div class="article-header">
+                        <h1 class="article-title">음료</h1>
+                        <p class="article-date">2022년 05월 31일</p>
+                    </div>
+                    <div class="article-body">
+                        <img src="coffee.PNG" width="300">
+                        <br />
+                        <br />
+                        <p>음료의 종류로는 Coffee, Non Coffee, Smoothie, Ade가 있다.</p>
+                        <br />
+                        <p>Coffe는 아메리카노, 카페라떼, 연유라떼, 바닐라라떼, 카페모카가 있다.</p>
+                    </div>
+                </article>
+                <article id="article2">    
+                    <div class="article-header">
+                        <h1 class="article-title">음료</h1>
+                        <p class="article-date">2022년 05월 31일</p>
+                    </div>
+                    <div class="article-body">
+                        <img src="noncoffee.PNG" width="300">
+                        <br />
+                        <br />
+                        <p>음료의 종류로는 Coffee, Non Coffee, Smoothie, Ade가 있다.</p>
+                        <br />
+                        <p>Non Coffee로는 초코라떼, 녹차라떼, 흑임자라떼가 있다.</p>
+                    </div>
+                </article>
+                <article id="article3">
+                    <div class="article-header">
+                        <h1 class="article-title">음료</h1>
+                        <p class="article-date">2022년 05월 31일</p>
+                    </div>
+                    <div class="article-body">
+                        <img src="smoo.PNG" width="300">
+                        <br />
+                        <br />
+                        <p>음료의 종류로는 Coffee, Non Coffee, Smoothie, Ade가 있다.</p>
+                        <br />
+                        <p>Smoothie로는 파인코코, 분홍딸기, 딸기바나나, 망고바나나가 있다.</p>
+                    </div>
+                </article>
+                <article id="article4">
+                    <div class="article-header">
+                        <h1 class="article-title">음료</h1>
+                        <p class="article-date">2022년 05월 31일</p>
+                    </div>
+                    <div class="article-body">
+                        <img src="ade.PNG" width="300">
+                        <br />
+                        <br />
+                        <p>음료의 종류로는 Coffee, Non Coffee, Smoothie, Ade가 있다.</p>
+                        <br />
+                        <p>Ade로는 블랙베리 에이드, 나의 라임오렌지가 있다.</p>
+                    </div>
+                </article>
+                <article id="article5">
+                    <div class="article-header">
+                        <h1 class="article-title">슈</h1>
+                        <p class="article-date">2022년 05월 31일</p>
+                    </div>
+                    <div class="article-body">
+                        <img src="비스켓슈.PNG" width="300">
+                        <br />
+                        <br />
+                        <p>슈의 종류로는 비스켓슈와 어서오슈(바닐라/초코)가 있다.</p>
+                        <br />
+                        <p>비스켓슈로는 바닐라슈, 초코소녀, 소금장슈, 몽블랑, 녹차, 페레로쉐, 얼그레이가 있다.</p>
+                    </div>
+                </article>
+                <article id="article6">
+                    <div class="article-header">
+                        <h1 class="article-title">슈</h1>
+                        <p class="article-date">2022년 05월 31일</p>
+                    </div>
+                    <div class="article-body">
+                        <img src="어서오슈.PNG" width="300">
+                        <br />
+                        <br />
+                        <p>슈의 종류로는 비스켓슈와 어서오슈(바닐라/초코)가 있다.</p>
+                        <br />
+                        <p>어서오슈(바닐라)는 대표 메뉴로 주문 즉시 매장에서 바로 쉐프가 슈 안에 바닐라 크림을 짜 판매한다.</p>
+                    </div>
+                </article>
+                <article id="article7">
+                    <div class="article-header">
+                        <h1 class="article-title">슈</h1>
+                        <p class="article-date">2022년 05월 31일</p>
+                    </div>
+                    <div class="article-body">
+                        <img src="어서오슈.PNG" width="300">
+                        <br />
+                        <br />
+                        <p>슈의 종류로는 비스켓슈와 어서오슈(바닐라/초코)가 있다.</p>
+                        <br />
+                        <p>어서오슈(초코)는 대표 메뉴로 주문 즉시 매장에서 바로 쉐프가 슈 안에 초코 크림을 짜 판매한다.</p>
+                    </div>
+                </article>
+                <article id="article8">
+                    <div class="article-header">
+                        <h1 class="article-title">쿠키</h1>
+                        <p class="article-date">2022년 05월 31일</p>
+                    </div>
+                    <div class="article-body">
+                        <img src="초코쿠키.PNG" width="300">
+                        <br />
+                        <br />
+                        <p>초코초코쿠키이다.</p>
+                    </div>
+                </article>
+                <article id="article9">
+                    <div class="article-header">
+                        <h1 class="article-title">쿠키</h1>
+                        <p class="article-date">2022년 05월 31일</p>
+                    </div>
+                    <div class="article-body">
+                        <img src="쑥떡.PNG" width="300">
+                        <br />
+                        <br />
+                        <p>쑥떡쑥떡쿠키이다. </p>
+                        <br>
+                       
+                    </div>
+                </article>
+                <article id="article10">
+                    <div class="article-header">
+                        <h1 class="article-title">쿠키</h1>
+                        <p class="article-date">2022년 05월 31일</p>
+                    </div>
+                    <div class="article-body">
+                        <img src="누텔라.PNG" width="300">
+                        <br />
+                        <br />
+                        <p>누텔라쿠키이다.</p>
+                    </div>
+                </article>
+                <article id="article11">
+                    <div class="article-header">
+                        <h1 class="article-title">타르트</h1>
+                        <p class="article-date">2022년 05월 31일</p>
+                    </div>
+                    <div class="article-body">
+                        <img src="청포도.PNG" width="300">
+                        <br />
+                        <br />
+                        <p>타르트의 종류 중 청포도(샤인머스켓)이다.</p>
+                        <br>
+                        <p>여름 시즌으로 나오는 메뉴로 레몬치즈크림을 베이스로 만들어진 타르트이다.</p>
+                    </div>
+                </article>
+                <article id="article12">
+                    <div class="article-header">
+                        <h1 class="article-title">타르트</h1>
+                        <p class="article-date">2022년 05월 31일</p>
+                    </div>
+                    <div class="article-body">
+                        <img src="딸기타르트.PNG" width="300">
+                        <br />
+                        <br />
+                        <p>타르트의 종류 중 딸기이다.</p>
+                        <br>
+                        <p>레몬치즈크림을 베이스로 매장에서 가장 잘 팔리는 타르트 중 하나이다.</p>
+                    </div>
+                </article>
+                <article id="article13">
+                    <div class="article-header">
+                        <h1 class="article-title">타르트</h1>
+                        <p class="article-date">2022년 05월 31일</p>
+                    </div>
+                    <div class="article-body">
+                        <img src="자몽오렌지.PNG" width="300">
+                        <br />
+                        <br />
+                        <p>타르트의 종류 중 자몽오렌지이다.</p>
+                        <br>
+                        <p>레몬치즈크림을 베이스로 만들어진 타르트이다.</p>
+                    </div>
+                </article>
+
+            </section>
+    </div>
+    <div id="page-right-wrapper"></div>         
+            <aside id="main-aside">
+                <div class="aside-list">
+                    <h3>카테고리</h3>
+                    <ul>
+                        <li><a href="#article1">데이터</a></li>
+                        <li><a href="#article2">데이터</a></li>
+                        <li><a href="#">데이터</a></li>
+                        <li><a href="#">데이터</a></li>
+                        <li><a href="#">데이터</a></li>
+                    </ul>
+                </div>
+                <div class="aside-list">
+                    <h3>최근 글</h3>
+                    <ul>
+                        <li><a href="#">데이터</a></li>
+                        <li><a href="#">데이터</a></li>
+                        <li><a href="#">데이터</a></li>
+                        <li><a href="#">데이터</a></li>
+                    </ul>
+                </div>
+            </aside>
+        </div>
+    </div>     
+        <footer id="main-footer">
+            <a href="#">Created By Team-HeXagon</a>
+        </footer>
+    
+</body>
+</html>
